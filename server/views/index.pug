@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to cucusndbndb #{title} 
+  a(href=`${link}`, target="_blank",id="idname") sito belo
+  p noi posedere queste chiave 
+    each item in array 
+      if item == "key1"
+        li #{item}
+      else 
+        li non sono key1

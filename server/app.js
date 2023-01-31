@@ -1,17 +1,42 @@
-var express = require('express'); //importa il modulo express
+//needed modules importation
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+//routers setting, these files manage urls routes
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+//express importayion 
+var app = express();
 
-const path = require('path');
+// view engine setup
+app.set('views', path.join(__dirname, 'views')); //all pages in views directory are visible
+app.set('view engine', 'pug'); //set pug as visualizer engine
+//modules setting 
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public'))); //an absolute directory is set as relative(/static/...)
+//setting router variables
+app.use('/', indexRouter); 
+app.use('/users', usersRouter);
 
-var app = express(); //oggetto che rappresenta express
-
-app.get('/', function(req, res){  //qui scrivo cosa fare se arriva una get al mio server, res rappresenta il client e le sue richieste , rew il server e le sue risposte
-    res.sendFile(path.join(__dirname, 'views/index.html')); //rispondo con un file http di cui indico il percorso
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/pagina1', function(req, res){  //qui scrivo cosa fare se arriva una get al mio server, res rappresenta il client e le sue richieste , rew il server e le sue risposte
-    res.send("<h1>Hey ciao ti ha mandato mio cugino hello world </h1>"); //rispondo con un file http
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-app.listen(3000, function(){
-  console.log("Server attivo sulla porta 3000");
-  }); //inizializzo il server sulla 3000
+module.exports = app;
