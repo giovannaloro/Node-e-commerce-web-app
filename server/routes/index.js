@@ -1,18 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET index */
+/* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index',{title:'Express',link:'/test',array: [
-      "key1",
-      "key2",
-      "key3"
-    ]});
-  });
+  res.render('index', { title: 'Express' });
+});
 
-  /* GET test */
-router.get('/test', function(req, res, next) {
-    res.render('test',{title:'Test'});
-  });
+router.get('/contatti',function(req, res, next){
+  res.render('contatti', {title: 'Contatti'});
+});
+
+
+
+router.get('/login',function(req, res, next){
+  res.render('login', {title: 'Login'});
+});
 
 module.exports = router;

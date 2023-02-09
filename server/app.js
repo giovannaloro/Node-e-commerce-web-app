@@ -1,27 +1,26 @@
-//needed modules importation
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//routers setting, these files manage urls routes
+
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-//express importayion 
+var sessionRouter = require('./routes/session');
+
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views')); //all pages in views directory are visible
-app.set('view engine', 'pug'); //set pug as visualizer engine
-//modules setting 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public'))); //an absolute directory is set as relative(/static/...)
-//setting router variables
-app.use('/', indexRouter); 
-app.use('/users', usersRouter);
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/session', sessionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

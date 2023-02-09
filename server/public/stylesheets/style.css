@@ -3,14 +3,33 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+
+
+#ul{
+  display: inline;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
 }
 
-.classname{ 
-  color:goldenrod
+#li{
+  display:inline;
+  padding: 120px;
 }
 
-#idname{
-  color:darkslategrey
+#nav{
+  left: 100px;
+}
+ 
+h1{
+  text-align: center;
+}
+
+#header{
+  text-align : left ;
+  background-color: darkred;
+  backface-visibility:inherit;
+  padding: 30px;
+  position: stickt; 
+  z-index: 2;
 }
