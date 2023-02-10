@@ -1,0 +1,15 @@
+extends layout
+
+block content 
+    .container
+    h1 REGISTRATI
+    form(method="post" ) 
+        .row
+            input(type="text", placeholder="id", name="id")
+        .row
+            input(type="text", placeholder="password", name="password" )
+        .row
+            input(type="text", placeholder="rpassword", name="rpassword")
+        .row
+            input(type="text", placeholder="mail", name="mail")    
+        input(val="Registrati" , type="submit")

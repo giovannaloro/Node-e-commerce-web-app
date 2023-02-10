@@ -1,15 +1,10 @@
 extends layout
-
-block content 
+block content
     .container
-    h1 REGISTRATI
-    form(method="post", action="/session/")
+    h1 
+    form(method="post" , action="/session") 
         .row
-            input(type="text", placeholder="username", name="username")
+            input(type="text", placeholder="mail", name="mail")
         .row
-            input(type="text", placeholder="password", name="password" )
-        .row
-            input(type="text", placeholder="rpassword", name="rpassword")
-        .row
-            input(type="text", placeholder="mail", name="mail")    
-        input(val="Registrati" , type="submit")
+            input(type="text", placeholder="password", name="password" )    
+        input(val="accedi" , type="submit")

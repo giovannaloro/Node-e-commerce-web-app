@@ -4,15 +4,15 @@ module.exports = executeQuery;
 
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "giovanni",
-    password: "password",
-    database: "persone"
+    host: "sql9.freesqldatabase.com" ,
+    user: "sql9596999",
+    password: "rw1ETbPAKI",
+    database: "sql9596999"
 
 });
 
 function executeQuery (sql, callback){
-    connection.connect();
+   // connection.connect();
     connection.query(sql,callback);
-    connection.end();
+    //connection.end();
 }
