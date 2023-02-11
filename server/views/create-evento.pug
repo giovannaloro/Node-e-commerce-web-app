@@ -1,0 +1,19 @@
+extends layout
+
+block content 
+    .container
+    h1 Crea evento
+    form(method="post" ) 
+        .row
+            input(type="text", placeholder="ID", name="idp")
+        .row
+            input(type="text", placeholder="Sport", name="sport")
+        .row
+            input(type="text", placeholder="Numero partecipanti", name="nup")
+        .row
+            input(type="text", placeholder="Luogo", name="luogo")
+        .row
+            input(type="text", placeholder="Orario", name="ora")
+        .row
+            input(type="text", placeholder="Data", name="data")
+        input(val="Crea" , type="submit") 

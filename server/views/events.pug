@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    each event in events
+        p #{event.sport}
+        p #{event.npm}
+        p #{event.luogo}
+        p #{event.ora}
+        p #{event.data}
+        a(href=`/event/${event.idp}`) #{event.idp}
+        

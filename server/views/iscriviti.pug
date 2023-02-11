@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    each partecipante in partecipanti
+        p #{partecipante.nome}
+        p #{partecipante.cognome}
+    h1 Iscriviti
+    form(method="post" )
+        input(val="Iscriviti" , type="submit") 
+
+        

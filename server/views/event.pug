@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    p #{event.sport}
+    p #{event.npm}
+    p #{event.luogo}
+    p #{event.ora}
+    p #{event.data}
+    p #{event.idp}
+    p
+    p 
+    a(href=`/iscriviti/${event.idp}`) Iscriviti
+        
