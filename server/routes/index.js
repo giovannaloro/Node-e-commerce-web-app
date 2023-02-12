@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const executeQuery = require('../modules/sqlscript.js');
+const hcheck = require('../modules/hourchek.js');
+const hashit = require('../modules/hashscript.js');
 const session = require('express-session');
 
 router.use(session({ secret:'ruguhd' }));
@@ -17,9 +19,10 @@ router.get('/logout',function(req, res, next){
 router.post('/iscriviti/:idp',function(req,res,next){
   executeQuery(`select * from utenti where idu in (select idu from partecipazioni where idp = '${req.params.idp}') `, function(error,results) {
     if(error) throw error; 
-    executeQuery(`select npm from partite where idp = '${req.params.idp}' `, function(er,res) {
+    executeQuery(`select * from partite where idp = '${req.params.idp}' `, function(er,resul) {
       if(er) throw er;
-      if (parseInt(res[0].npm) = length(results)){return res.send("La partita ha già raggiunto il numero massimo di partecipanti");}
+      if (hcheck(resul[0].ora,resul[0].data)){return res.send("Non è possibile iscriversi ad eventi passati");}
+      if (parseInt(resul[0].npm) == results.length){return res.send("La partita ha già raggiunto il numero massimo di partecipanti");}
     });
     if (req.session.type == "p"){
     executeQuery(`insert into partecipazioni(idp,idu) values('${req.params.idp}','${req.session.idu}')`,function(rer,ris){
@@ -82,7 +85,8 @@ router.post('/registrazione',function(req, res, next){
       if(results.length>0){res.send("id  già esistente");}
       else {}
     });
-    executeQuery(`insert into utenti(nome,cognome,mail,idu,username,tipo,password) values('${req.body.nome}','${req.body.cognome}','${req.body.mail}','${req.body.idu}','${req.body.username}','${req.body.tac}','${req.body.password}')`,function(rer,ris){
+    word = hashit(req.body.mail);
+    executeQuery(`insert into utenti(nome,cognome,mail,idu,tipo,password) values('${req.body.nome}','${req.body.cognome}','${req.body.mail}','${word}','${req.body.tac}','${req.body.password}')`,function(rer,ris){
       res.send("utente registrato");
     });
   });
@@ -108,8 +112,13 @@ router.post('/registrazione',function(req, res, next){
   
   router.post('/create-evento',function(req, res, next){
       executeQuery(`select mail from utenti where mail = '${req.body.mail}'`,function(error,results){
+        //g1=new Date(req.body.data);
+        //g2=new Date();
+        if (hcheck(req.body.ora,req.body.data)){return res.send("Data evento non ammissibile ")}
         if (req.session.user != null && req.session.type=="o"){
-          executeQuery(`insert into partite (idp,sport,npm,luogo,ora,data) values('${req.body.idp}','${req.body.sport}','${req.body.npm}','${req.body.luogo}','${req.body.ora}','${req.body.data}')`,function(rer,ris){
+          word = req.body.sport + req.body.data;
+          idp = hashit(word);
+          executeQuery(`insert into partite (idp,sport,npm,luogo,ora,data) values('${idp}','${req.body.sport}','${req.body.nup}','${req.body.luogo}','${req.body.ora}','${req.body.data}')`,function(rer,ris){
             res.send("Evento creato ");
           });
         }

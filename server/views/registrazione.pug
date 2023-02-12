@@ -4,6 +4,11 @@ block content
     .container
     h1 REGISTRATI
     form(method="post" ) 
+        
+        <select name="tac" >
+            <option value="o">o</option>
+            <option value="p">p</option>
+        h1 
         .row
             input(type="text", placeholder="Nome", name="nome")
         .row
@@ -11,13 +16,7 @@ block content
         .row
             input(type="text", placeholder="Email", name="mail")
         .row
-            input(type="text", placeholder="Username", name="username")
-        .row
-            input(type="text", placeholder="ID", name="idu")
-        .row
             input(type="text", placeholder="Password", name="password" )
         .row
             input(type="text", placeholder="Ripeti password", name="rpassword")
-        .row 
-            input(type="text", placeholder="Tipo account(o/p) ", name="tac")
         input(val="Registrati" , type="submit") 
