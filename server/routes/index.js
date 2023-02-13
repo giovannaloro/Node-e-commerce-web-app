@@ -5,6 +5,10 @@ const executeQuery = require('../modules/sqlscript.js');
 const hcheck = require('../modules/hourchek.js');
 const hashit = require('../modules/hashscript.js');
 const session = require('express-session');
+const delay = require('../modules/waitscript.js');
+
+//errors
+var err1 = "Non è possibile iscriversi due  volte allo stesso evento";
 
 router.use(session({ secret:'ruguhd' }));
 
@@ -18,15 +22,18 @@ router.get('/logout',function(req, res, next){
 
 
 router.post('/iscriviti/:idp',function(req,res,next){
-  executeQuery(`select * from utenti where idu in (select idu from partecipazioni where idp = '${req.params.idp}') `, function(error,results) {
+  executeQuery(`select * from utenti where mail in (select idu from partecipazioni where idp = '${req.params.idp}') `, function(error,results) {
     if(error) throw error; 
     executeQuery(`select * from partite where idp = '${req.params.idp}' `, function(er,resul) {
       if(er) throw er;
-      if (hcheck(resul[0].ora,resul[0].data)){return res.send("Non è possibile iscriversi ad eventi passati");}
-      if (parseInt(resul[0].npm) == results.length){return res.send("La partita ha già raggiunto il numero massimo di partecipanti");}
+      for (let i = 0; i < results.length; i++) {
+        if (results[i].mail == req.session.user){ return res.render("logic-error",{message : err1});}
+      }
+      if (hcheck(resul[0].ora,resul[0].data)){ return res.render("logic-error",{message : err1});}
+      if (parseInt(resul[0].npm) == results.length){return res.render("logic-error",{message : err1});}
       else {
         if (req.session.type == "p"){
-          executeQuery(`insert into partecipazioni(idp,idu) values('${req.params.idp}','${req.session.idu}')`,function(rer,ris){
+          executeQuery(`insert into partecipazioni(idp,idu) values('${req.params.idp}','${req.session.user}')`,function(rer,ris){
             res.send("Iscrizione effettuata");})}
           else {return res.send("Devi loggarti come partecipante per iscriverti ad un evento");}
           }
@@ -35,7 +42,7 @@ router.post('/iscriviti/:idp',function(req,res,next){
 });
 
 router.get('/iscriviti/:idp',function(req,res,next){
-  executeQuery(`select * from utenti where idu in (select idu from partecipazioni where idp = '${req.params.idp}') `, function(error,results) {
+  executeQuery(`select * from utenti where mail in (select idu from partecipazioni where idp = '${req.params.idp}') `, function(error,results) {
     if(error) throw error; 
     res.render('iscriviti.pug', {partecipanti : results});
   });
@@ -66,10 +73,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/contatti',function(req, res, next){
-  res.render('contatti', {title: 'Contatti'});
-});
-
 
 router.get('/registrazione',function(req, res, next){
   res.render('registrazione', {title: 'Registrazione'});
@@ -82,30 +85,11 @@ router.post('/registrazione',function(req, res, next){
       if(req.body.rpassword!=req.body.password){res.send("password diverse");}
       else {}
     });
-    executeQuery(`select mail from utenti where idu = '${req.body.idu}'`,function(error,results){
-      if(results.length>0){res.send("id  già esistente");}
-      else {}
-    });
-    word = hashit(req.body.mail);
-    executeQuery(`insert into utenti(nome,cognome,mail,idu,tipo,password) values('${req.body.nome}','${req.body.cognome}','${req.body.mail}','${word}','${req.body.ctac}','${req.body.password}')`,function(rer,ris){
+    executeQuery(`insert into utenti(nome,cognome,mail,tipo,password) values('${req.body.nome}','${req.body.cognome}','${req.body.mail}','${req.body.ctac}','${req.body.password}')`,function(rer,ris){
       res.send("utente registrato");
     });
   });
 
-  router.get('/users/:id',function(req,res,next){
-    executeQuery(`select * from utenti where id='${req.params.id}'`, function(error,results) {
-      if(error) throw error; 
-      res.render('user', {user: results[0]});
-    });
-  });
-  
-  
-  router.get('/users',function(req,res,next){
-    executeQuery("select * from utenti", function(error,results) {
-      if(error) throw error; 
-      res.render('users', {users: results});
-    });
-  });
 
   router.get('/create-evento',function(req, res, next){
     res.render('create-evento', {title: 'Creazione evento'});
@@ -114,8 +98,6 @@ router.post('/registrazione',function(req, res, next){
   router.post('/create-evento',function(req, res, next){
       executeQuery(`select mail from utenti where mail = '${req.body.mail}'`,function(error,results){
         var time=(req.body.datetime).split("T");
-        console.log(time[0]);
-        console.log(time[1]);
         if (hcheck(time[1],time[0])){return res.send("Data evento non ammissibile ")}
         if (req.session.user != null && req.session.type=="o"){
           idp = randomstring.generate(10);

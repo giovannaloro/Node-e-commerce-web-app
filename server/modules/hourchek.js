@@ -5,17 +5,11 @@ module.exports = hcheck;
 
 
 function hcheck (time,date){
-    var time = time;
-    var data = date;
     var s=time.split(":");
     var d = new Date();
-    var h = d.getHours();
-    var m = d.getMinutes();
     var g1=new Date(date);
+    g1.setHours(s[0],s[1],0);
+    d.setHours(d.getHours()+1);
     if (g1.getTime()<d.getTime()){return 1;}
-    if (g1.getTime() == d.getTime()){
-        if (h < s[0]){return 1;}
-        if (h == s[0] && m < s[1]){return 1;}
-    }
-    return 0;
+    else {return 0;}
 }

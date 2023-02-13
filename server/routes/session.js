@@ -26,7 +26,7 @@ router.use(session({ secret:'ruguhd' }));
 
   router.get('/account',function(req, res, next){
     if (req.session.user){
-      return res.render('account',{title: "account"});
+      return res.render('account',{title: "account", name: req.session.user});
     }
     else {return res.redirect("/");}
   });
