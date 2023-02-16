@@ -1,22 +1,22 @@
 extends layout
 
 block content 
-    .container
-    h1 REGISTRATI
-    form(method="post" ) 
-        
-        <select name="ctac" >
-            <option value="o">organizzatore</option>
-            <option value="p">partecipante</option>
-        h1 
-        .row
-            input(type="text", placeholder="Nome", name="nome")
-        .row
-            input(type="text", placeholder="cognome", name="cognome")
-        .row
-            input(type="text", placeholder="Email", name="mail")
-        .row
-            input(type="text", placeholder="Password", name="password" )
-        .row
-            input(type="text", placeholder="Ripeti password", name="rpassword")
-        input(val="Registrati" , type="submit") 
+    div#formr
+        h4 Registrati
+        form(method="post" ) 
+            .row
+                input(type="text", placeholder="Nome", name="nome")
+            .row
+                input(type="text", placeholder="cognome", name="cognome")
+            .row
+                input(type="text", placeholder="Email", name="mail")
+            .row
+                input(type="text", placeholder="Password", name="password" )
+            .row
+                input(type="text", placeholder="Ripeti password", name="rpassword")
+            .row
+                select(name="ctac") 
+                    option(value="o") organizzatore
+                    option(value="p") partecipante
+            br
+            input#submit(val="Crea" , type="submit") 

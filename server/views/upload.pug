@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-    form(method="post",action="/session/upload/", enctype="multitype/form-data")
-      input(type="file", value="Carica un file" name="filetoupload") 
-      button(type="submit") Upload

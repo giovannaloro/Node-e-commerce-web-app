@@ -2,7 +2,10 @@
 
 module.exports = executeQuery;
 
+// importo il modulo mysql
 const mysql = require('mysql');
+
+// connessione al database
 const connection = mysql.createConnection({
     host: "sql9.freesqldatabase.com" ,
     user: "sql9596999",
@@ -11,8 +14,7 @@ const connection = mysql.createConnection({
 
 });
 
+// funzione da esportare
 function executeQuery (sql, callback){
-   // connection.connect();
     connection.query(sql,callback);
-    //connection.end();
 }

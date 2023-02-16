@@ -1,13 +1,11 @@
 extends layout
 
 block content
-    p #{event.sport}
-    p #{event.npm}
-    p #{event.luogo}
-    p #{event.ora}
-    p #{event.data}
-    p #{event.idp}
-    p
-    p 
-    a(href=`/iscriviti/${event.idp}`) Iscriviti
+    div#formr
+        p#generalfont1 Sport: #{event.sport}
+        p#generalfont1 Numero partecipanti: #{event.npm}
+        p#generalfont1 Luogo: #{event.luogo}
+        p#generalfont1 Orario: #{event.ora}
+        p#generalfont1 Data: #{event.data}
+        a#submit(href=`/iscriviti/${event.ide}`) Iscriviti
         

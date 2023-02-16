@@ -1,15 +1,16 @@
 extends layout
 
 block content 
-    .container
-    h1 Crea evento
-    form(method="post" ) 
-        .row
-            input(type="text", placeholder="Sport", name="sport")
-        .row
-            input(type="number", placeholder="Numero partecipanti", name="nup")
-        .row
-            input(type="text", placeholder="Luogo", name="luogo")
-        .row
-            input(type="datetime-local", name="datetime")
-        input(val="Crea" , type="submit") 
+    div#formr
+        h4 Crea evento
+        form(method="post" ) 
+            .row
+                input(type="text", placeholder="Sport", name="sport")
+            .row
+                input(type="number", placeholder="Numero partecipanti", name="nup")
+            .row
+                input(type="text", placeholder="Luogo", name="luogo")
+            .row
+                input(type="datetime-local", name="datetime")
+            br
+            input#submit(val="Crea" , type="submit") 

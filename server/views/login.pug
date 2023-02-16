@@ -1,10 +1,12 @@
 extends layout
 block content
-    .container
-    h1 
-    form(method="post" , action="/session") 
-        .row
-            input(type="text", placeholder="Email", name="mail")
-        .row
-            input(type="text", placeholder="Password", name="password" )    
-        input(val="accedi" , type="submit")
+    div#forml
+        h4 Accedi
+        form(method="post" , action="/session/login") 
+            .row
+                input(type="text", placeholder="Email", name="mail")
+            .row
+                input(type="text", placeholder="Password", name="password" )   
+            .row 
+            br 
+            input#submit(val="Accedi" , type="submit") 

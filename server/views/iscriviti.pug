@@ -1,11 +1,19 @@
 extends layout
 
 block content
+    form#formr(method="post" )
+        p#generalfont1 Partecipa anche tu 
+        input#submit(val="Iscriviti" , type="submit")
+    br
+    br 
+    br 
+    br 
+    br 
+    br 
+    br 
+    br 
+    br 
+    br 
+    p#generalfont2 Lista partecipanti:
     each partecipante in partecipanti
-        p #{partecipante.nome}
-        p #{partecipante.cognome}
-    h1 Iscriviti
-    form(method="post" )
-        input(val="Iscriviti" , type="submit") 
-
-        
+        p#generalfont1 #{partecipante.nome} #{partecipante.cognome}

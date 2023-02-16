@@ -1,11 +1,12 @@
 extends layout
 
 block content
+    br 
+    br 
+
     each event in events
-        p #{event.sport}
-        p #{event.npm}
-        p #{event.luogo}
-        p #{event.ora}
-        p #{event.data}
-        a(href=`/event/${event.idp}`) #{event.idp}
+        div#eventdiv
+            p#generalfont1  #{event.sport} #{event.npm} #{event.luogo} #{event.ora} #{event.data}
+            a#generalfont2(href=`/event/${event.ide}`) Vedi dettagli
+        br
         

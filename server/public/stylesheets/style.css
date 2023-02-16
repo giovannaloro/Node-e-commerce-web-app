@@ -1,35 +1,215 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center ;
+  margin: 0;
+  background-color: white;
 }
 
-
-
-#ul{
-  display: inline;
-  list-style-type: none;
-  padding: 0px;
-  margin: 0px;
+input {
+  font-size: 20px;
 }
 
-#li{
-  display:inline;
-  padding: 120px;
+#generalfont1{
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  color : black;
 }
 
-#nav{
-  left: 100px;
+#generalfont2{
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: underline;
+  color : black;
 }
- 
-h1{
-  text-align: center;
+
+#div1 {
+  background-color: white;
+  color: black;
+  position : fixed;
+  width: 300px;
+  top : 350px ;
+  right : 300px;
+  margin-left : auto ;
+  display: flex;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 5px;
 }
+
+#div2 {
+  background-color: white;
+  color: black ;
+  position : fixed;
+  width: 300px;
+  top : 350px ;
+  right : 800px;
+  margin-left : auto ;
+  display: flex;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+#div3 {
+  background-color: white;
+  color: black ;
+  position : fixed;
+  width: 300px;
+  top : 350px ;
+  right : 800px;
+  margin-left : auto ;
+  display: flex;
+}
+
+h4{
+  font-size : 20px;
+}
+
+#forml{
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: gainsboro;
+  position : fixed;
+  width: 300px;
+  top : 200px ;
+  right : 500px;
+  padding : 40px;
+}
+
+#formr{
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: gainsboro;
+  position : fixed;
+  width: 280px;
+  top : 160px ;
+  right : 525px;
+  padding : 20px;
+}
+
 
 #header{
-  text-align : left ;
-  background-color: darkred;
-  backface-visibility:inherit;
-  padding: 30px;
-  position: stickt; 
-  z-index: 2;
+  background-color: white ;
+  margin-left : auto ;
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 5px;
+}
+
+#eventdiv{
+  background-color: white ;
+  margin-left : auto ;
+  display: flex;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: rgb(170, 14, 14);
+}
+
+a:hover {
+
+  color: red;
+
+}
+
+ #a{
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 900;
+ }
+
+
+ .logo {
+  object-position : 100%  100%;
+ }
+form{
+  display : inline-block;
+}
+
+option{
+  font-size : 20px;
+}
+
+select{
+  font-size : 20px;
+}
+
+
+
+#divbutton{
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  width: 140px;
+  color: white;
+  background-color: red ;
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
+  position : absolute;
+  top : 300px ;
+  right : 650px;
+}
+
+#divacbutton{
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  width: 140px;
+  color: white;
+  background-color: red ;
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
+  padding : 10px; 
+
+}
+
+#submit{
+
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: white;
+  background-color: green;
+  font-family: 'Oswald';
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
+}
+
+
+
+.container{
+  justify-content : center ;
+}
+
+.row 
+{
+  background-color: white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: #fff;
+  font-family: 'Oswald';
+  font-size: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
 }
